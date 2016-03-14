@@ -16,8 +16,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package com.mycompany.caassignment;
+package com.mycompany.caassignment.model;
 
+import com.mycompany.caassignment.SessionBean;
+import com.mycompany.caassignment.hibernate.Users;
+import com.mycompany.caassignment.hibernate.UsersHelper;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;

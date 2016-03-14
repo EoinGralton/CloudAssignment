@@ -18,6 +18,8 @@
  */
 package com.mycompany.caassignment;
 
+import com.mycompany.caassignment.hibernate.Users;
+import com.mycompany.caassignment.hibernate.UsersHelper;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
