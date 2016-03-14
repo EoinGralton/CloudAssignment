@@ -16,30 +16,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package com.mycompany.caassignment;
+package com.mycompany.caassignment.view;
 
+import com.mycompany.caassignment.SessionBean;
 import com.mycompany.caassignment.hibernate.Users;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
- 
-public class SessionBean {
- 
-    public static HttpSession getSession() {
-        return (HttpSession) FacesContext.getCurrentInstance()
-                .getExternalContext().getSession(false);
+
+/**
+ *
+ * @author Dietmar
+ */
+public class User {
+    
+    Users user = SessionBean.getUser();
+    
+    public User() {
+        
     }
- 
-    public static HttpServletRequest getRequest() {
-        return (HttpServletRequest) FacesContext.getCurrentInstance()
-                .getExternalContext().getRequest();
+    
+    public String getEmail() {
+        return user.getEmail();
     }
- 
-    public static Users getUser() {
-        HttpSession session = getSession();
-        if (session != null)
-            return (Users) session.getAttribute("user");
-        else
-            return null;
-    }
+    
 }

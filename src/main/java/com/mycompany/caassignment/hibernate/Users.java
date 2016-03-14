@@ -1,4 +1,4 @@
-package com.mycompany.caassignment;
+package com.mycompany.caassignment.hibernate;
 // Generated 13-Mar-2016 10:29:48 by Hibernate Tools 4.3.1
 
 
