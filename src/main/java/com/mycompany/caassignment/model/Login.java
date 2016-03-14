@@ -75,11 +75,9 @@ public class Login implements Serializable {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("User: "+user);
         if (user != null) {
             HttpSession session = SessionBean.getSession();
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "index";
         } else {
             FacesContext.getCurrentInstance().addMessage(

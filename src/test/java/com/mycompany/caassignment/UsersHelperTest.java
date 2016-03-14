@@ -20,6 +20,8 @@ package com.mycompany.caassignment;
 
 import com.mycompany.caassignment.hibernate.Users;
 import com.mycompany.caassignment.hibernate.UsersHelper;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -98,14 +100,12 @@ public class UsersHelperTest {
      * Test of hashToString method, of class UsersHelper.
      */
     @Test
-    public void testHashToString() {
+    public void testHashToString() throws NoSuchAlgorithmException {
         System.out.println("hashToString");
-        byte[] hash = null;
-        String expResult = "";
+        byte[] hash = MessageDigest.getInstance("SHA1").digest(new String("secret").getBytes());
+        String expResult = "E5E9FA1BA31ECD1AE84F75CAAA474F3A663F05F4";
         String result = UsersHelper.hashToString(hash);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
