@@ -18,27 +18,43 @@
  */
 package com.mycompany.caassignment;
 
-import com.mycompany.caassignment.hibernate.Users;
+import com.mycompany.caassignment.hibernate.Member;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
  
+/**
+ *
+ * @author Dietmar
+ */
 public class SessionBean {
  
+    /**
+     *
+     * @return
+     */
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
     }
  
+    /**
+     *
+     * @return
+     */
     public static HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance()
                 .getExternalContext().getRequest();
     }
  
-    public static Users getUser() {
+    /**
+     *
+     * @return
+     */
+    public static Member getUser() {
         HttpSession session = getSession();
         if (session != null)
-            return (Users) session.getAttribute("user");
+            return (Member) session.getAttribute("member");
         else
             return null;
     }

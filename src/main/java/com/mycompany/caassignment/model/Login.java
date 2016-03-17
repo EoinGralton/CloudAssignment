@@ -19,8 +19,8 @@
 package com.mycompany.caassignment.model;
 
 import com.mycompany.caassignment.SessionBean;
-import com.mycompany.caassignment.hibernate.Users;
-import com.mycompany.caassignment.hibernate.UsersHelper;
+import com.mycompany.caassignment.hibernate.Member;
+import com.mycompany.caassignment.hibernate.MemberHelper;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -32,6 +32,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
  
+/**
+ *
+ * @author Dietmar
+ */
 @ManagedBean
 @SessionScoped
 public class Login implements Serializable {
@@ -42,42 +46,71 @@ public class Login implements Serializable {
     private String msg;
     private String email;
  
+    /**
+     *
+     * @return
+     */
     public String getPwd() {
         return pwd;
     }
  
+    /**
+     *
+     * @param pwd
+     */
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
  
+    /**
+     *
+     * @return
+     */
     public String getMsg() {
         return msg;
     }
  
+    /**
+     *
+     * @param msg
+     */
     public void setMsg(String msg) {
         this.msg = msg;
     }
  
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
  
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
  
     //validate login
+
+    /**
+     *
+     * @return
+     */
     public String validateUsernamePassword() {
-        Users user = null;
-        UsersHelper users = new UsersHelper();
+        Member member = null;
+        MemberHelper members = new MemberHelper();
         try {
-            user = users.auth(email, pwd);
+            member = members.auth(email, pwd);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (user != null) {
+        if (member != null) {
             HttpSession session = SessionBean.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("user", member);
             return "index";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -90,6 +123,11 @@ public class Login implements Serializable {
     }
  
     //logout event, invalidate session
+
+    /**
+     *
+     * @return
+     */
     public String logout() {
         HttpSession session = SessionBean.getSession();
         session.invalidate();

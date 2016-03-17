@@ -16,10 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package com.mycompany.caassignment;
+package com.mycompany.caassignment.hibernate;
 
-import com.mycompany.caassignment.hibernate.Users;
-import com.mycompany.caassignment.hibernate.UsersHelper;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.junit.After;
@@ -33,79 +31,80 @@ import static org.junit.Assert.*;
  *
  * @author Dietmar
  */
-public class UsersHelperTest {
-    
-    public UsersHelperTest() {
+public class MemberHelperTest {
+
+    public MemberHelperTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of auth method, of class UsersHelper.
+     * Test of auth method, of class MemberHelper.
      */
     @Test
     public void testAuth() throws Exception {
         System.out.println("auth");
         String email = "test@test.com";
         String password = "secret";
-        UsersHelper instance = new UsersHelper();
-        Users result = instance.auth(email, password);
-        assertEquals(email, result.getEmail());
-        email = "test@test.com";
-        password = "secret";
- 
+        MemberHelper instance = new MemberHelper();
+        Member result = instance.auth(email, password);
+        if (result != null) {
+            assertEquals(email, result.getEmail());
+        } else {
+            fail("no member found");
+        }
     }
 
     /**
-     * Test of updatePassword method, of class UsersHelper.
+     * Test of updatePassword method, of class MemberHelper.
      */
     @Test
     public void testUpdatePassword() throws Exception {
         System.out.println("updatePassword");
         String email = "test@test.com";
         String password = "secret";
-        UsersHelper instance = new UsersHelper();
+        MemberHelper instance = new MemberHelper();
         int expResult = 0;
-        int result = instance.updatePassword(email, password);
-        assertEquals(expResult, result);
+        Member result = instance.updatePassword(email, password);
+        assertNotNull(result);
     }
 
     /**
-     * Test of getUserFromEmail method, of class UsersHelper.
+     * Test of getUserFromEmail method, of class MemberHelper.
      */
     @Test
-    public void testGetUserFromEmail() {
-        System.out.println("getUserFromEmail");
+    public void testGetMemberFromEmail() {
+        System.out.println("getMemberFromEmail");
         String email = "test@test.com";
-        UsersHelper instance = new UsersHelper();
-        Users result = instance.getUserFromEmail(email);
+        MemberHelper instance = new MemberHelper();
+        Member result = instance.getMemberFromEmail(email);
         assertEquals(email, result.getEmail());
     }
 
     /**
-     * Test of hashToString method, of class UsersHelper.
+     * Test of hashToString method, of class MemberHelper.
      */
     @Test
     public void testHashToString() throws NoSuchAlgorithmException {
         System.out.println("hashToString");
         byte[] hash = MessageDigest.getInstance("SHA1").digest(new String("secret").getBytes());
         String expResult = "E5E9FA1BA31ECD1AE84F75CAAA474F3A663F05F4";
-        String result = UsersHelper.hashToString(hash);
+        String result = MemberHelper.hashToString(hash);
         assertEquals(expResult, result);
     }
-    
+
 }

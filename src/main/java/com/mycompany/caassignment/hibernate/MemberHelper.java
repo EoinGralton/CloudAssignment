@@ -29,39 +29,50 @@ import org.hibernate.Transaction;
  *
  * @author Dietmar
  */
-public class UsersHelper {
+public class MemberHelper {
 
     Session session = null;
 
-    public UsersHelper() {
+    /**
+     *
+     */
+    public MemberHelper() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
-    
-    public Users getUserFromEmail(String email) {
-        Users user = null;
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Users where email='" + email + "'");
-            if (q != null) {
-                user = (Users) q.uniqueResult();
-            }
-            System.out.println("User: " + user);
-            tx.commit();
-            return user;
+
+    /**
+     *
+     * @param email
+     * @return
+     */
+    public Member getMemberFromEmail(String email) {
+        Member member = null;
+        org.hibernate.Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("from Member where email='" + email + "'");
+        if (q != null) {
+            member = (Member) q.uniqueResult();
+        }
+        tx.commit();
+        return member;
     }
 
-    public Users auth(String email, String password) throws NoSuchAlgorithmException {
+    /**
+     *
+     * @param email
+     * @param password
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
+    public Member auth(String email, String password) throws NoSuchAlgorithmException {
 
         byte[] passwordHash = null;
         byte[] passwordHashDb = null;
         passwordHash = MessageDigest.getInstance("SHA1").digest(password.getBytes());
-        System.out.println("SHA1 length: " + passwordHash.length);
-        Users ret = null;
+        Member ret = null;
         try {
-            ret = getUserFromEmail(email);
+            ret = getMemberFromEmail(email);
             if (ret != null) {
                 passwordHashDb = ret.getPassword();
-                System.out.println("Hash  : " + hashToString(passwordHash));
-                System.out.println("HashDb: " + hashToString(passwordHashDb));
                 for (int i = 0; i < passwordHash.length; i++) {
                     if (passwordHash[i] != passwordHashDb[i]) {
                         ret = null;
@@ -75,33 +86,41 @@ public class UsersHelper {
         return ret;
     }
 
-    public int updatePassword(String email, String password) throws NoSuchAlgorithmException {
-        int ret = 3;
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Query q = session.createQuery("from Users where email='" + email + "'");
-            if (q.uniqueResult() == null) {
-                ret = 1;
-            } else {
-                Users user = (Users) q.uniqueResult();
+    /**
+     *
+     * @param email
+     * @param password
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
+    public Member updatePassword(String email, String password) throws NoSuchAlgorithmException {
+        Member ret = null;
+        Member member = this.getMemberFromEmail(email);
+        if (member != null) {
+            Transaction tx = null;
+            try {
+                session = HibernateUtil.getSessionFactory().getCurrentSession();
+                tx = session.beginTransaction();
                 byte[] passwordHash = MessageDigest.getInstance("SHA1").digest(password.getBytes());
-                System.out.println("Hash: "+hashToString(passwordHash));
-                user.setPassword(passwordHash);
-                session.update(user);
+                member.setPassword(passwordHash);
+                session.update(member);
                 tx.commit();
-                ret = 0;
+                ret = member;
+            } catch (HibernateException e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+                e.printStackTrace();
             }
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            ret = 2;
-            e.printStackTrace();
         }
         return ret;
     }
-    
+
+    /**
+     *
+     * @param hash
+     * @return
+     */
     public static String hashToString(byte[] hash) {
         return javax.xml.bind.DatatypeConverter.printHexBinary(hash);
     }

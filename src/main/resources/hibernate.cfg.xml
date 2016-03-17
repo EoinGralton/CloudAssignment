@@ -9,6 +9,6 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="com/mycompany/caassignment/Users.hbm.xml"/>
+    <mapping resource="com/mycompany/caassignment/hibernate/Member.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -34,9 +34,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
  
+/**
+ *
+ * @author Dietmar
+ */
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class AuthFilter implements Filter {
  
+    /**
+     *
+     */
     public AuthFilter() {
     }
  
@@ -52,11 +59,11 @@ public class AuthFilter implements Filter {
  
             HttpServletRequest reqt = (HttpServletRequest) request;
             HttpServletResponse resp = (HttpServletResponse) response;
-            HttpSession ses = reqt.getSession(false);
+            HttpSession session = reqt.getSession(false);
  
             String reqURI = reqt.getRequestURI();
             if (reqURI.indexOf("/login.xhtml") >= 0
-                    || (ses != null && ses.getAttribute("username") != null))
+                    || (session != null && session.getAttribute("user") != null))
                 chain.doFilter(request, response);
             else
                 resp.sendRedirect(reqt.getContextPath() + "/login.xhtml");

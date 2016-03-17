@@ -19,7 +19,7 @@
 package com.mycompany.caassignment.view;
 
 import com.mycompany.caassignment.SessionBean;
-import com.mycompany.caassignment.hibernate.Users;
+import com.mycompany.caassignment.hibernate.Member;
 
 /**
  *
@@ -27,12 +27,19 @@ import com.mycompany.caassignment.hibernate.Users;
  */
 public class User {
     
-    Users user = SessionBean.getUser();
+    Member user = SessionBean.getUser();
     
+    /**
+     *
+     */
     public User() {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return user.getEmail();
     }
