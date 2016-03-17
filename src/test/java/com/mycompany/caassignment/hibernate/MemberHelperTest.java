@@ -92,7 +92,11 @@ public class MemberHelperTest {
         String email = "test@test.com";
         MemberHelper instance = new MemberHelper();
         Member result = instance.getMemberFromEmail(email);
-        assertEquals(email, result.getEmail());
+        if (result != null) {
+            assertEquals(email, result.getEmail());
+        } else {
+            fail("no member found");
+        }
     }
 
     /**
