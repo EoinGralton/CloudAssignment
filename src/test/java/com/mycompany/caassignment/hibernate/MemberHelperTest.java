@@ -67,6 +67,13 @@ public class MemberHelperTest {
         } else {
             fail("no member found");
         }
+        email = "test1@test.com";
+        result = instance.auth(email, password);
+        if (result != null) {
+            fail("member found");
+        } else {
+        	assertNull(result);
+        }
     }
 
     /**

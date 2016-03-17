@@ -31,13 +31,20 @@ import org.hibernate.Transaction;
  */
 public class MemberHelper {
 
-    Session session = null;
+    private Session session = null;
 
     /**
      *
      */
     public MemberHelper() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
+    }
+    
+    private Session getSession() {
+    	if (session == null || !session.isOpen()){
+    		session = HibernateUtil.getSessionFactory().getCurrentSession();
+    	}
+    	return session;
     }
 
     /**
@@ -47,8 +54,8 @@ public class MemberHelper {
      */
     public Member getMemberFromEmail(String email) {
         Member member = null;
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from Member where email='" + email + "'");
+        org.hibernate.Transaction tx = getSession().beginTransaction();
+        Query q = getSession().createQuery("from Member where email='" + email + "'");
         if (q != null) {
             member = (Member) q.uniqueResult();
         }
@@ -99,11 +106,10 @@ public class MemberHelper {
         if (member != null) {
             Transaction tx = null;
             try {
-                session = HibernateUtil.getSessionFactory().getCurrentSession();
-                tx = session.beginTransaction();
+                tx = getSession().beginTransaction();
                 byte[] passwordHash = MessageDigest.getInstance("SHA1").digest(password.getBytes());
                 member.setPassword(passwordHash);
-                session.update(member);
+                getSession().update(member);
                 tx.commit();
                 ret = member;
             } catch (HibernateException e) {
