@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dietmar.
+ * Copyright (C) 2016 Dietmar Steiner (open.source@d-steiner.com)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,12 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
+ * 
+ * This class validates the given string against RFC 5322 (Internet Message Format) 
+ * 
+ * the regex was found on this site: http://emailregex.com/
+ * 
+ * 
  *
  * @author Dietmar
  */

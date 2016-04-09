@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dietmar.
+ * Copyright (C) 2016 Dietmar Steiner (open.source@d-steiner.com)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,18 @@ public class User {
      * @return
      */
     public String getEmail() {
+    	if (user == null) {
+    		return "";
+    	}
         return user.getEmail();
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public boolean isLoggedIn() {
+    	return user != null;
     }
     
 }

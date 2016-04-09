@@ -13,36 +13,74 @@ public class Member  implements java.io.Serializable {
      private String email;
      private byte[] password;
 
+    /**
+     *
+     */
     public Member() {
     }
 
-	
+    /**
+     *
+     * @param password
+     */
     public Member(byte[] password) {
         this.password = password;
     }
+
+    /**
+     *
+     * @param email
+     * @param password
+     */
     public Member(String email, byte[] password) {
        this.email = email;
        this.password = password;
     }
    
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return this.id;
     }
     
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return this.email;
     }
     
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     *
+     * @return
+     */
     public byte[] getPassword() {
         return this.password;
     }
     
+    /**
+     *
+     * @param password
+     */
     public void setPassword(byte[] password) {
         this.password = password;
     }

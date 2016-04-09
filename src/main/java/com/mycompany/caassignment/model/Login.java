@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dietmar.
+ * Copyright (C) 2016 Dietmar Steiner (open.source@d-steiner.com)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,10 +22,6 @@ import com.mycompany.caassignment.SessionBean;
 import com.mycompany.caassignment.hibernate.Member;
 import com.mycompany.caassignment.hibernate.MemberHelper;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
- 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -101,17 +97,12 @@ public class Login implements Serializable {
      * @return
      */
     public String validateUsernamePassword() {
-        Member member = null;
         MemberHelper members = new MemberHelper();
-        try {
-            member = members.auth(email, pwd);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Member member = members.auth(email, pwd);
         if (member != null) {
             HttpSession session = SessionBean.getSession();
             session.setAttribute("user", member);
-            return "index";
+            return "index?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
