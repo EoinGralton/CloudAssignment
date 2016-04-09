@@ -41,7 +41,18 @@ public class User {
      * @return
      */
     public String getEmail() {
+    	if (user == null) {
+    		return "";
+    	}
         return user.getEmail();
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public boolean isLoggedIn() {
+    	return user != null;
     }
     
 }

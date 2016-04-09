@@ -19,28 +19,34 @@ MA 02110-1301  USA
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>login</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <h3>CA Assignment Login</h3>
-            <h:outputText value="Username" />
-            <h:inputText id="username" value="#{login.email}">
-                <f:validator validatorId="emailValidator"/>
-            </h:inputText>
-            <h:message for="username"></h:message>
-            <br /><br />
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h3>CA Assignment Login</h3>
+		<h:outputText value="email address: " />
+		<h:inputText id="username" value="#{login.email}" required="true"
+			requiredMessage="Please supply a valid email address">
+			<f:validator validatorId="emailValidator" />
+			<f:ajax event="blur" render="usernamemessage" />
+		</h:inputText>
+		<h:message id="usernamemessage" for="username"></h:message>
+		<br />
+		<br />
 
-            <h:outputText value="Password" />
-            <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-            <h:message for="password"></h:message>
-            <br /><br />
+		<h:outputText value="Password: " />
+		<h:inputSecret id="password" value="#{login.pwd}" required="true"
+			requiredMessage="Please enter your password">
+		</h:inputSecret>
+		<h:message id="passwordmessage" for="password"></h:message>
+		<br />
+		<br />
 
-            <h:commandButton action="#{login.validateUsernamePassword}"
-                             value="Login"></h:commandButton>
-        </h:form>
-    </h:body>
+		<h:commandButton action="#{login.validateUsernamePassword}"
+			value="Login"></h:commandButton>
+	</h:form>
+</h:body>
 </html>

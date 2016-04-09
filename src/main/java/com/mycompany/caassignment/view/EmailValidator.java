@@ -28,6 +28,12 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
+ * 
+ * This class validates the given string against RFC 5322 (Internet Message Format) 
+ * 
+ * the regex was found on this site: http://emailregex.com/
+ * 
+ * 
  *
  * @author Dietmar
  */
