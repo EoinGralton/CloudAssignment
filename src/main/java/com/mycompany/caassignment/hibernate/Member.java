@@ -1,5 +1,6 @@
 package com.mycompany.caassignment.hibernate;
-// Generated 15-Mar-2016 22:58:49 by Hibernate Tools 4.3.1
+
+// Generated 12-Apr-2016 20:37:36 by Hibernate Tools 4.3.1
 
 
 
@@ -12,82 +13,52 @@ public class Member  implements java.io.Serializable {
      private Integer id;
      private String email;
      private byte[] password;
+     private Person person;
 
-    /**
-     *
-     */
     public Member() {
     }
 
-    /**
-     *
-     * @param password
-     */
+	
     public Member(byte[] password) {
         this.password = password;
     }
-
-    /**
-     *
-     * @param email
-     * @param password
-     */
-    public Member(String email, byte[] password) {
+    public Member(String email, byte[] password, Person person) {
        this.email = email;
        this.password = password;
+       this.person = person;
+    }
+
+    Member(String email, byte[] password) {
+       this.password = password;
+       this.person = person;
     }
    
-    /**
-     *
-     * @return
-     */
     public Integer getId() {
         return this.id;
     }
     
-    /**
-     *
-     * @param id
-     */
     public void setId(Integer id) {
         this.id = id;
     }
-
-    /**
-     *
-     * @return
-     */
     public String getEmail() {
         return this.email;
     }
     
-    /**
-     *
-     * @param email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /**
-     *
-     * @return
-     */
     public byte[] getPassword() {
         return this.password;
     }
     
-    /**
-     *
-     * @param password
-     */
     public void setPassword(byte[] password) {
         this.password = password;
     }
-
-
-
-
+    public Person getPerson() {
+        return this.person;
+    }
+    
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }
-
-
