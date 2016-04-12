@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-Apr-2016 20:37:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="assignment" name="com.mycompany.caassignment.hibernate.Person" optimistic-lock="version" table="person">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="foreign">
+        <param name="property">member</param>
+      </generator>
+    </id>
+    <one-to-one class="com.mycompany.caassignment.hibernate.Member" constrained="true" name="member"/>
+    <property name="idmember" type="java.lang.Integer">
+      <column name="idmember"/>
+    </property>
+    <property name="admin" type="java.lang.Boolean">
+      <column name="admin"/>
+    </property>
+    <property name="title" type="string">
+      <column length="5" name="title"/>
+    </property>
+    <property name="firstname" type="string">
+      <column length="30" name="firstname"/>
+    </property>
+    <property name="lastname" type="string">
+      <column length="30" name="lastname"/>
+    </property>
+    <property name="dateofbirth" type="date">
+      <column length="10" name="dateofbirth"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="policies" table="policy">
+      <key>
+        <column name="idperson"/>
+      </key>
+      <one-to-many class="com.mycompany.caassignment.hibernate.Policy"/>
+    </set>
+  </class>
+</hibernate-mapping>

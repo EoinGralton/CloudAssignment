@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-Apr-2016 20:37:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="assignment" name="com.mycompany.caassignment.hibernate.Policy" optimistic-lock="version" table="policy">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.mycompany.caassignment.hibernate.Person" fetch="select" name="person">
+      <column name="idperson"/>
+    </many-to-one>
+    <property name="outsideEuUs" type="boolean">
+      <column name="outsideEuUS" not-null="true"/>
+    </property>
+    <property name="start" type="date">
+      <column length="10" name="start"/>
+    </property>
+    <property name="finish" type="date">
+      <column length="10" name="finish"/>
+    </property>
+    <property name="healthInsurance" type="java.lang.Boolean">
+      <column name="health_insurance"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="policypersons" table="policyperson">
+      <key>
+        <column name="idpolicy" not-null="true"/>
+      </key>
+      <one-to-many class="com.mycompany.caassignment.hibernate.Policyperson"/>
+    </set>
+  </class>
+</hibernate-mapping>

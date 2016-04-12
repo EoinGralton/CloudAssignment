@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-Apr-2016 20:37:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="assignment" name="com.mycompany.caassignment.hibernate.Member" optimistic-lock="version" table="member">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="email" type="string">
+      <column length="50" name="email" unique="true"/>
+    </property>
+    <property name="password" type="binary">
+      <column name="password" not-null="true"/>
+    </property>
+    <one-to-one class="com.mycompany.caassignment.hibernate.Person" name="person"/>
+  </class>
+</hibernate-mapping>

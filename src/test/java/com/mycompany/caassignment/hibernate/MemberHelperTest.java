@@ -104,6 +104,7 @@ public class MemberHelperTest {
 		} else {
 			fail("no member found");
 		}
+                System.out.println(result.getPerson().toString());
 	}
 
 	/**
@@ -139,7 +140,7 @@ public class MemberHelperTest {
 	public void testDelete() throws NoSuchAlgorithmException {
 		System.out.println("delete");
 		MemberHelper helper = new MemberHelper();
-		helper.insert("testx@test.com", "secret");
+                boolean insert = helper.insert("testx@test.com", "secret");
 		helper.delete("testx@test.com");
 		Member result = helper.getMemberFromEmail("testx@test.com");
 		Member expResult = null;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-Apr-2016 20:37:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="assignment" name="com.mycompany.caassignment.hibernate.Policyperson" optimistic-lock="version" table="policyperson">
+    <id name="idPolicyPerson" type="java.lang.Integer">
+      <column name="idPolicyPerson"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.mycompany.caassignment.hibernate.Policy" fetch="select" name="policy">
+      <column name="idpolicy" not-null="true"/>
+    </many-to-one>
+    <property name="title" type="string">
+      <column length="5" name="title"/>
+    </property>
+    <property name="firstname" type="string">
+      <column length="30" name="firstname"/>
+    </property>
+    <property name="lastname" type="string">
+      <column length="30" name="lastname"/>
+    </property>
+    <property name="dateofbirth" type="date">
+      <column length="10" name="dateofbirth"/>
+    </property>
+  </class>
+</hibernate-mapping>
