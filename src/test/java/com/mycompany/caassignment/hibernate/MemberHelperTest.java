@@ -104,7 +104,6 @@ public class MemberHelperTest {
 		} else {
 			fail("no member found");
 		}
-                System.out.println(result.getPerson().toString());
 	}
 
 	/**
