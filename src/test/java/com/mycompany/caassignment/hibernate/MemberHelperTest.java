@@ -130,6 +130,11 @@ public class MemberHelperTest {
 		assertEquals(expResult, result);
 		Member member = helper.getMemberFromEmail("testx@test.com");
 		helper.delete("testx@test.com");
+		expResult = true;
+		Person person = new Person(member, member.getId(), false, "Mr", "testx1", "testx2", null, null);
+		result = helper.insert("testx1@test.com", "secret", person);
+		assertEquals(expResult, result);
+		member = helper.getMemberFromEmail("testx@test.com");
 	}
 
 	/**
@@ -140,9 +145,8 @@ public class MemberHelperTest {
 		System.out.println("delete");
 		MemberHelper helper = new MemberHelper();
                 boolean insert = helper.insert("testx@test.com", "secret");
-		helper.delete("testx@test.com");
-		Member result = helper.getMemberFromEmail("testx@test.com");
-		Member expResult = null;
+		boolean result = helper.delete("testx@test.com");
+		boolean expResult = true;
 		assertEquals(expResult, result);
 	}
 

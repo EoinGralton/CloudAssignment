@@ -30,7 +30,8 @@ public class Member  implements java.io.Serializable {
 
     Member(String email, byte[] password) {
        this.password = password;
-       this.person = person;
+       this.email = email;
+       this.person = null;
     }
    
     public Integer getId() {
