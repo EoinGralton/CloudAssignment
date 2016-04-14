@@ -155,13 +155,16 @@ public class MemberHelper {
      *
      * @param email
      */
-    public void delete(String email) {
+    public boolean delete(String email) {
         Member member = this.getMemberFromEmail(email);
+        System.out.println("delete: "+member.getEmail());
         if (member != null) {
             Transaction tx = getSession().beginTransaction();
             getSession().delete(member);
             tx.commit();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -172,5 +175,22 @@ public class MemberHelper {
     public static String hashToString(byte[] hash) {
         return javax.xml.bind.DatatypeConverter.printHexBinary(hash);
     }
+
+	public boolean insert(String email, String password, Person person) {
+        Transaction tx = getSession().beginTransaction();
+        try {
+            byte[] passwordHash = MessageDigest.getInstance("SHA1").digest(password.getBytes());
+            Member member = new Member(email, passwordHash, person);
+            getSession().save(member);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+	}
 
 }
