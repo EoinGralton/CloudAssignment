@@ -52,3 +52,10 @@ ALTER TABLE assignment.policyperson ADD CONSTRAINT idpolicyfk FOREIGN KEY ( idpo
 
 INSERT INTO assignment.member( id, email, password ) VALUES ( 1, 'test@test.com', '[B@6ce27568' ); 
 
+INSERT INTO assignment.person( id, idmember, admin, title, firstname, lastname, dateofbirth ) VALUES ( 1, 1, '\0', 'Mr', 'Joe', 'Bloggs', '1990-05-02');
+
+INSERT INTO assignment.policy( id, idperson, outsideEuUS, start, finish, health_insurance) VALUES ( 1, 1, '\0', '2016-06-26', '2016-07-04', '\0' );
+
+INSERT INTO assignment.policyperson( idPolicyPerson, idpolicy, title, firstname, lastname, dateofbirth ) VALUES ( 1, 1, 'Mr', 'Joe', 'Bloggs', '1990-05-02' ), 
+																												( 2, 1, 'Miss', 'Sarah', 'Bloggs', '1988-02-23' ), 
+																												( 3, 1, 'Mr', 'Nick', 'Brown', '1970-11-16');
