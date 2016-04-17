@@ -134,7 +134,7 @@ public class MemberHelperTest {
 		Person person = new Person(member, member.getId(), false, "Mr", "testx1", "testx2", null, null);
 		result = helper.insert("testx1@test.com", "secret", person);
 		assertEquals(expResult, result);
-		member = helper.getMemberFromEmail("testx@test.com");
+		helper.delete("testx1@test.com");
 	}
 
 	/**
