@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Adding a Form</title>
+</h:head>
+<h:body>
+ 
+ private Integer idPolicyPerson;
+     
+    <h:form>
+        <h3>Adding Form Components</h3>
+        <h:panelGrid columns="3">
+        
+        <h:outputLabel for="Person Title">Title:</h:outputLabel>
+            <h:inputText value="policy.title" id="title"></h:inputText>
+            <br />
+            <br />
+            <h:outputLabel for="Person First Name">First Name:</h:outputLabel>
+            <h:inputText value="policy.firstname" id="firstname"></h:inputText>
+            <br />
+            <br />
+            
+             <h:outputLabel for="Last Name">Last Name:</h:outputLabel>
+            <h:inputText value="#{policy.lastname}"></h:inputText>
+            <br />
+            <br />
+ 
+ 
+            <h:outputLabel for="Date Of Birth">Person D.O.B:</h:outputLabel>
+            <h:inputText value="#{policy.dateofbirth}"></h:inputText>
+            <br />
+            <br />
+ // AILMENTS ETC. 
+            <h:outputLabel for="Policy">Select Policy:</h:outputLabel>
+            <h:inputText value="#{policy.policy}"></h:inputText>
+            <br />
+            <br />
+ 
+            <h:outputLabel for="EU">Outside EU? :</h:outputLabel>
+            <h:inputText value="#{policy.eu}"></h:inputText>
+            <br />
+            <br />
+ 
+            <h:outputLabel for="startdate">Start Date:</h:outputLabel>
+            <h:inputText value="#{policy.startdate}"></h:inputText>
+            <br />
+            <br />
+            <h:outputLabel for="enddate">End Date:</h:outputLabel>
+            <h:inputText value="#{policy.enddate}"></h:inputText>
+            <br />
+            <br />
+            <h:commandButton action="policy" value="Submit"></h:commandButton>
+ 
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
