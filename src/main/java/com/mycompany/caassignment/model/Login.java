@@ -29,6 +29,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
  
 /**
+ * This class contains the business rules to login and logout of the system
  *
  * @author Dietmar
  */
@@ -93,8 +94,11 @@ public class Login implements Serializable {
     //validate login
 
     /**
+     * 
+     * This method validates the given email and password as  a valid login with the 
+     * database.  
      *
-     * @return
+     * @return the xhtml page to load next
      */
     public String validateUsernamePassword() {
         MemberHelper members = new MemberHelper();
@@ -116,8 +120,11 @@ public class Login implements Serializable {
     //logout event, invalidate session
 
     /**
+     * 
+     * Logs the current user out and invalidates the session.
+     * 
      *
-     * @return
+     * @return login page
      */
     public String logout() {
         HttpSession session = SessionBean.getSession();
