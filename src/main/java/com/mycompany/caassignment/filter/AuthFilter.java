@@ -58,6 +58,7 @@ public class AuthFilter implements Filter {
     /**
      * redirects all requests to login.xhtml exept for:
      *      /login.xhtml
+     *      /register.xhtml
      *      *.js.xhtml
      *      when session exists and has a user attribute
      * 
@@ -76,6 +77,7 @@ public class AuthFilter implements Filter {
 
             String reqURI = reqt.getRequestURI();
             if (reqURI.contains("/login.xhtml")
+            		|| reqURI.contains("/register.xhtml")
                     || reqURI.contains(".js.xhtml")
                     || (session != null && session.getAttribute("user") != null)) {
                 chain.doFilter(request, response);
