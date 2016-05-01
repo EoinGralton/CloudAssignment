@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>People on Policy</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>People On Policy</h1> 
+            
+            <h:outputText value="Title: "/>
+            <h:selectOneMenu value="#{PPmodel.title}">
+   				<f:selectItem itemValue="Mr" itemLabel="Mr" />
+   				<f:selectItem itemValue="Ms" itemLabel="Ms" />
+   				<f:selectItem itemValue="Mrs" itemLabel="Mrs" />
+			</h:selectOneMenu>
+			<br /><br />
+                  
+            <h:outputText value="First Name: "/>
+            <h:inputText id="firstname" value="#{PPmodel.firstname}" required="true"
+			requiredMessage="Please enter first name.">
+     		</h:inputText>
+     		<h:message for="firstname"></h:message>
+     		<br /><br />
+     		
+     		<h:outputText value="Last Name: "/>
+            <h:inputText id="lastname" value="#{PPmodel.lastname}" required="true"
+			requiredMessage="Please enter last name.">
+     		</h:inputText>
+     		<h:message for="lastname"></h:message>
+     		<br /><br />
+     		
+     		<h:outputText value="D.O.B: "/>
+            <h:inputText id="dateofbirth" value="#{PPmodel.dateofbirth}" required="true"
+			requiredMessage="Please enter the correct date of birth (yyyy-mm-dd).">
+     		<f:convertDateTime pattern="yyyy-MM-dd"/>
+     		</h:inputText>
+     		<h:message for="dateofbirth"></h:message>
+     		<br /><br />
+     		
+     		<h:commandButton value="Add" action="#{PPmodel.addPolicyPersonToDB}"></h:commandButton>   		
+        </h:form>
+        
+            <h3>List items</h3>
+        	<h:form rendered="#{not empty PPmodel.currentList}">
+            <h:dataTable value="#{PPmodel.currentList}" var="item">
+                <h:column><f:facet name="header">Title:</f:facet>#{item.title}</h:column>
+                <h:column><f:facet name="header">First Name:</f:facet>#{item.firstName}</h:column>
+                <h:column><f:facet name="header">Last Name:</f:facet>#{item.lastName}</h:column>
+                <h:column><f:facet name="header">D.O.B:</f:facet>#{item.dateofbirth}</h:column>
+            </h:dataTable>
+        	</h:form>
+        	
+        	<h:panelGroup rendered="#{empty PPmodel.currentList}">
+            <p>Table is empty! Please add new items.</p>
+        </h:panelGroup>
+    </h:body>
+</html>
